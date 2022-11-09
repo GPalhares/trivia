@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './trivia.png';
 import './App.css';
-
+import logo from './trivia.png';
+// teste
 export default function App() {
   return (
     <div className="App">
