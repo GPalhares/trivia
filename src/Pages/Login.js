@@ -8,6 +8,7 @@ export default class Login extends React.Component {
     email: '',
   };
 
+  // alo
   handleState = ({ target }) => {
     const { value, name } = target;
     this.setState({ [name]: value });
