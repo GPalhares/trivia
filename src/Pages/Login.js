@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import requestUserToken from '../helpers/api';
+import { connect } from 'react-redux';
 
-export default class Login extends React.Component {
+import requestUserToken from '../helpers/api';
+import { savePlayerInfo } from '../Redux/actions';
+
+class Login extends React.Component {
   state = {
     name: '',
     email: '',
   };
 
-  // alo
   handleState = ({ target }) => {
     const { value, name } = target;
     this.setState({ [name]: value });
   };
 
   handleClick = async () => {
-    const { history } = this.props;
+    const { dispatch, history } = this.props;
     const userToken = await requestUserToken();
     localStorage.setItem('token', userToken);
-    history.push('game');
+    history.push('/game');
+    dispatch(savePlayerInfo(this.state));
   };
 
   handleConfig = () => {
@@ -66,5 +69,13 @@ export default class Login extends React.Component {
 }
 
 Login.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   history: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  profilePicture: state.player.profilePicture,
+
+});
+
+export default connect(mapStateToProps)(Login);

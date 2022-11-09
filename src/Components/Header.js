@@ -8,20 +8,26 @@ class Header extends React.Component {
   async componentDidMount() {
     const { gravatarEmail, dispatch } = this.props;
     const hash = md5(gravatarEmail).toString();
-
     await dispatch(fetchTokenImage(hash));
   }
 
   render() {
     const { name, score, profilePicture } = this.props;
-
     return (
       <div>
-        <img src={ profilePicture } alt="gravatar" data-testid="header-profile-picture" />
-        <h1 data-testid="header-player-name">{name}</h1>
-        <h1 data-testid="header-score">{score}</h1>
-        Play
+        { profilePicture && (
+          <div>
+            <img
+              src={ profilePicture }
+              alt="gravatar"
+              data-testid="header-profile-picture"
+            />
+            <h1 data-testid="header-player-name">{name}</h1>
+            <h1 data-testid="header-score">{score}</h1>
+          </div>)}
+
       </div>
+
     );
   }
 }
