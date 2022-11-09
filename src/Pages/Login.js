@@ -20,6 +20,11 @@ export default class Login extends React.Component {
     history.push('game');
   };
 
+  handleConfig = () => {
+    const { history } = this.props;
+    history.push('/config');
+  };
+
   render() {
     const { name, email } = this.state;
     return (
@@ -45,6 +50,14 @@ export default class Login extends React.Component {
           onClick={ this.handleClick }
         >
           Play
+        </button>
+
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.handleConfig }
+        >
+          Configs
         </button>
       </div>
     );
