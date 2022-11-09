@@ -1,14 +1,19 @@
-import React from 'react';
-import './App.css';
-import logo from './trivia.png';
-// teste
-export default function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>SUA VEZ</p>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Login from './Pages/Login';
+// import Wallet from './pages/Wallet';
+
+class App extends Component {
+  render() {
+    return (
+      <main>
+        <Switch>
+          <Route exact path="/" component={ Login } />
+          {/* <Route path="/carteira" component={ Wallet } /> */}
+        </Switch>
+      </main>
+    );
+  }
 }
+
+export default App;
