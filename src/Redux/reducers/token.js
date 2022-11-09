@@ -7,9 +7,6 @@ const initialState = {
 
 const token = (state = initialState, action) => {
   switch (action.type) {
-  // case '':
-  //   return '';
-
   default:
     return state;
   }
