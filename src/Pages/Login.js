@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import requestUserToken from '../helpers/api';
 
 export default class Login extends React.Component {
   state = {
@@ -9,6 +11,13 @@ export default class Login extends React.Component {
   handleState = ({ target }) => {
     const { value, name } = target;
     this.setState({ [name]: value });
+  };
+
+  handleClick = async () => {
+    const { history } = this.props;
+    const userToken = await requestUserToken();
+    localStorage.setItem('token', userToken);
+    history.push('game');
   };
 
   render() {
@@ -33,6 +42,7 @@ export default class Login extends React.Component {
           disabled={ !name || !email }
           type="button"
           data-testid="btn-play"
+          onClick={ this.handleClick }
         >
           Play
         </button>
@@ -40,3 +50,7 @@ export default class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.string.isRequired,
+};
