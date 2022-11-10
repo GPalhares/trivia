@@ -109,7 +109,15 @@ class Game extends Component {
             ))}
           </div>
           {(showNext || timer > maxNumber)
-          && (<button type="button" data-testid="btn-next">Next</button>)}
+          && (
+            <button
+              type="button"
+              data-testid="btn-next"
+            >
+              Next
+
+            </button>
+          )}
         </div>
       );
     }

@@ -1,6 +1,6 @@
 const initialState = {
   name: '',
-  assertions: '',
+  assertions: 0,
   score: 0,
   gravatarEmail: '',
   profilePicture: undefined,
@@ -19,6 +19,7 @@ const player = (state = initialState, action) => {
       ...state,
       score: state.score
       + (action.scoreInfo[2] + (action.scoreInfo[0] * action.scoreInfo[1])),
+      assertions: state.assertions + 1,
     };
   default:
     return state;
