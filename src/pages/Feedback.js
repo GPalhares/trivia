@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Header from '../Components/Header';
 
 class Feedback extends Component {
+  playAgain = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
   render() {
     const { assertions, score } = this.props;
     const mediaDeAcertos = 3;
@@ -17,7 +22,14 @@ class Feedback extends Component {
         <p data-testid="feedback-total-score">{score}</p>
         <p>Seus Acertos: </p>
         <p data-testid="feedback-total-question">{assertions}</p>
+        <button
+          data-testid="btn-play-again"
+          onClick={ this.playAgain }
+          type="button"
+        >
+          Play Again
 
+        </button>
       </div>
     );
   }
@@ -25,6 +37,9 @@ class Feedback extends Component {
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   score: PropTypes.number.isRequired,
 };
 
