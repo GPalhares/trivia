@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Header from '../Components/Header';
+import '../App.css';
 
 class Game extends Component {
   state = {
     response: '',
     idx: 0,
+    showAnswers: false,
   };
 
   async componentDidMount() {
@@ -42,7 +44,7 @@ class Game extends Component {
   };
 
   render() {
-    const { response, idx, resps, correct } = this.state;
+    const { response, idx, resps, correct, showAnswers } = this.state;
     if (response.length > 0) {
       console.log(response[0]);
       return (
@@ -53,6 +55,9 @@ class Game extends Component {
           <div data-testid="answer-options">
             {this.shuffleArray(resps).map((resp, idxx) => (
               <button
+                onClick={ () => this.setState({ showAnswers: true }) }
+                className={ showAnswers && (correct === resp
+                  ? 'correct-answer' : 'wrong-answer') }
                 data-testid={ correct === resp
                   ? 'correct-answer' : `wrong-answer-${idxx}` }
                 type="button"
