@@ -13,6 +13,7 @@ class Game extends Component {
     timer: 0,
     resps: [],
     showNext: false,
+    handleClick: 0,
   };
 
   async componentDidMount() {
@@ -20,7 +21,7 @@ class Game extends Component {
     const data = await fetch(`https://opentdb.com/api.php?amount=5&token=${localToken}`)
       .then((resp) => resp.json());
     const { history } = this.props;
-    // console.log(data.results);
+    console.log(data.results);
     if (data.results.length <= 0) {
       localStorage.clear();
       history.push('/');
@@ -72,6 +73,31 @@ class Game extends Component {
     }
   };
 
+  handleNext = () => {
+    this.setState((prev) => ({ handleClick: prev.handleClick + 1 }));
+    const { handleClick, showAnswers } = this.state;
+    const { history } = this.props;
+    const mgc = 4;
+    if (handleClick >= mgc) {
+      history.push('/feedback');
+    } else if (showAnswers) {
+      this.setState((prev) => ({
+        showAnswers: false,
+        showNext: false,
+        idx: prev.idx + 1,
+        correct: prev.response[prev.idx + 1].correct_answer,
+        resps: [
+          ...prev.response[prev.idx + 1].incorrect_answers,
+          prev.response[prev.idx + 1].correct_answer,
+        ],
+        timer: 0,
+      }));
+      this.setState((prevState) => ({
+        resps: this.shuffleArray(prevState.resps),
+      }));
+    }
+  };
+
   shuffleArray = (arr) => {
     for (let i = arr.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -90,7 +116,7 @@ class Game extends Component {
           <Header />
           <p>{timer}</p>
           <h2 data-testid="question-category">{response[idx].category}</h2>
-          <p data-testid="question-text">{JSON.stringify(response[idx].question)}</p>
+          <p data-testid="question-text">{response[idx].question}</p>
           <div data-testid="answer-options">
             {resps.map((resp, idxx) => (
               <button
@@ -111,6 +137,7 @@ class Game extends Component {
           {(showNext || timer > maxNumber)
           && (
             <button
+              onClick={ this.handleNext }
               type="button"
               data-testid="btn-next"
             >
