@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Config from './pages/Config';
+import Feedback from './pages/Feedback';
 import Game from './pages/Game';
 import Login from './pages/Login';
 
@@ -12,7 +13,7 @@ class App extends Component {
           <Route exact path="/" component={ Login } />
           <Route exact path="/game" component={ Game } />
           <Route exact path="/config" component={ Config } />
-          {/* <Route path="/carteira" component={ Wallet } /> */}
+          <Route path="/feedback" component={ Feedback } />
 
           {/* <Route path="/carteira" component={ Header } /> */}
         </Switch>
