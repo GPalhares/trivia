@@ -1,8 +1,8 @@
+import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import md5 from 'crypto-js/md5';
-import { fetchTokenImage } from '../Redux/actions/index';
+import { fetchTokenImage } from '../Redux/actions';
 
 class Header extends React.Component {
   async componentDidMount() {
@@ -14,20 +14,15 @@ class Header extends React.Component {
   render() {
     const { name, score, profilePicture } = this.props;
     return (
-      <div>
-        { profilePicture && (
-          <div>
-            <img
-              src={ profilePicture }
-              alt="gravatar"
-              data-testid="header-profile-picture"
-            />
-            <h1 data-testid="header-player-name">{name}</h1>
-            <h1 data-testid="header-score">{score}</h1>
-          </div>)}
-
-      </div>
-
+      <header>
+        <img
+          src={ profilePicture || 'https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc' }
+          alt="gravatar"
+          data-testid="header-profile-picture"
+        />
+        <h1 data-testid="header-player-name">{name}</h1>
+        <h1 data-testid="header-score">{score}</h1>
+      </header>
     );
   }
 }

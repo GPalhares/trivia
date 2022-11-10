@@ -7,7 +7,6 @@ class Game extends Component {
       <div>
         <Header />
         Game
-
       </div>
     );
   }

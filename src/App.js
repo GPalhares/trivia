@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Login from './Pages/Login';
-import Game from './Pages/Game';
-import Config from './Pages/Config';
+import Config from './pages/Config';
+import Game from './pages/Game';
+import Login from './pages/Login';
 
 class App extends Component {
   render() {
