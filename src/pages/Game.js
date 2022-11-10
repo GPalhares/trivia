@@ -12,6 +12,7 @@ class Game extends Component {
     showAnswers: false,
     timer: 0,
     resps: [],
+    showNext: false,
   };
 
   async componentDidMount() {
@@ -48,7 +49,7 @@ class Game extends Component {
   };
 
   handleClick = ({ target }) => {
-    this.setState({ showAnswers: true });
+    this.setState({ showAnswers: true, showNext: true });
     const { correct, response, timer } = this.state;
     const magic = 10;
     const { dispatch } = this.props;
@@ -81,7 +82,7 @@ class Game extends Component {
 
   render() {
     const { response, idx, correct, resps, showAnswers,
-      timer } = this.state;
+      timer, showNext } = this.state;
     const maxNumber = 30;
     if (response.length > 0) {
       return (
@@ -107,6 +108,8 @@ class Game extends Component {
               </button>
             ))}
           </div>
+          {(showNext || timer > maxNumber)
+          && (<button type="button" data-testid="btn-next">Next</button>)}
         </div>
       );
     }
