@@ -14,6 +14,12 @@ const player = (state = initialState, action) => {
     return { ...state,
       gravatarEmail: action.playerInfo.email,
       name: action.playerInfo.name };
+  case 'addScore':
+    return {
+      ...state,
+      score: state.score
+      + (action.scoreInfo[2] + (action.scoreInfo[0] * action.scoreInfo[1])),
+    };
   default:
     return state;
   }
