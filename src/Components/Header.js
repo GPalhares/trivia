@@ -27,11 +27,16 @@ class Header extends React.Component {
   }
 }
 
+Header.defaultProps = {
+  profilePicture: 'https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc',
+  gravatarEmail: 'email.test',
+};
+
 Header.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  gravatarEmail: PropTypes.string.isRequired,
+  gravatarEmail: PropTypes.string,
   name: PropTypes.string.isRequired,
-  profilePicture: PropTypes.string.isRequired,
+  profilePicture: PropTypes.string,
   score: PropTypes.number.isRequired,
 };
 
