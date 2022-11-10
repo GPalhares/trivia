@@ -10,6 +10,8 @@ class Game extends Component {
     response: '',
     idx: 0,
     showAnswers: false,
+    timer: 0,
+    resps: [],
   };
 
   async componentDidMount() {
@@ -30,57 +32,68 @@ class Game extends Component {
           data.results[0].correct_answer,
         ],
       });
+      this.setState((prevState) => ({
+        resps: this.shuffleArray(prevState.resps),
+      }));
     }
+
+    const oneSecond = 1000;
+    setInterval(() => this.timer(), oneSecond);
   }
+
+  timer = () => {
+    this.setState((prevState) => ({
+      timer: prevState.timer + 1,
+    }));
+  };
 
   handleClick = ({ target }) => {
     this.setState({ showAnswers: true });
-    const { correct, response } = this.state;
+    const { correct, response, timer } = this.state;
     const magic = 10;
     const { dispatch } = this.props;
     const { name } = target;
     if (response.difficulty === 'hard') {
       const diff = 3;
       if (name === correct) {
-        dispatch(addScore([magic, diff, magic]));
+        dispatch(addScore([magic, diff, timer]));
       }
     } else if (response.difficulty === 'medium') {
       const diff = 2;
       if (name === correct) {
-        dispatch(addScore([magic, diff, magic]));
+        dispatch(addScore([magic, diff, timer]));
       }
     } else {
       const diff = 1;
       if (name === correct) {
-        dispatch(addScore([magic, diff, magic]));
+        dispatch(addScore([magic, diff, timer]));
       }
     }
   };
 
   shuffleArray = (arr) => {
-    // Loop em todos os elementos
     for (let i = arr.length - 1; i > 0; i -= 1) {
-    // Escolhendo elemento aleatório
       const j = Math.floor(Math.random() * (i + 1));
-      // Reposicionando elemento
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    // Retornando array com aleatoriedade
     return arr;
   };
 
   render() {
-    const { response, idx, resps, correct, showAnswers } = this.state;
+    const { response, idx, correct, resps, showAnswers,
+      timer } = this.state;
+    const maxNumber = 30;
     if (response.length > 0) {
-      console.log(response[0]);
       return (
         <div>
           <Header />
+          <p>{timer}</p>
           <h2 data-testid="question-category">{response[idx].category}</h2>
           <p data-testid="question-text">{JSON.stringify(response[idx].question)}</p>
           <div data-testid="answer-options">
-            {this.shuffleArray(resps).map((resp, idxx) => (
+            {resps.map((resp, idxx) => (
               <button
+                disabled={ timer > maxNumber }
                 onClick={ this.handleClick }
                 name={ resp }
                 className={ showAnswers && (correct === resp
