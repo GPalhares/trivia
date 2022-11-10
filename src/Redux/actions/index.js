@@ -8,6 +8,11 @@ const savePlayerInfo = (playerInfo) => ({
   playerInfo,
 });
 
+const addScore = (scoreInfo) => ({
+  type: 'addScore',
+  scoreInfo,
+});
+
 const fetchTokenImage = (hash) => async (dispatch) => {
   try {
     const response = await fetch(`https://www.gravatar.com/avatar/${hash}`);
@@ -18,4 +23,4 @@ const fetchTokenImage = (hash) => async (dispatch) => {
   }
 };
 
-export { fetchTokenImage, savePlayerInfo };
+export { fetchTokenImage, savePlayerInfo, addScore };
