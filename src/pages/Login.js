@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import requestUserToken from '../helpers/api';
@@ -20,8 +20,8 @@ class Login extends React.Component {
     const { dispatch, history } = this.props;
     const userToken = await requestUserToken();
     localStorage.setItem('token', userToken);
+    await dispatch(savePlayerInfo(this.state));
     history.push('/game');
-    dispatch(savePlayerInfo(this.state));
   };
 
   handleConfig = () => {
