@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Header from '../Components/Header';
+import { connect } from 'react-redux';
 import '../App.css';
+import Header from '../Components/Header';
+import { addScore } from '../Redux/actions';
 
 class Game extends Component {
   state = {
@@ -43,7 +45,30 @@ class Game extends Component {
     this.setState((prevState) => ({
       timer: prevState.timer + 1,
     }));
-    console.log('teste');
+  };
+
+  handleClick = ({ target }) => {
+    this.setState({ showAnswers: true });
+    const { correct, response, timer } = this.state;
+    const magic = 10;
+    const { dispatch } = this.props;
+    const { name } = target;
+    if (response.difficulty === 'hard') {
+      const diff = 3;
+      if (name === correct) {
+        dispatch(addScore([magic, diff, timer]));
+      }
+    } else if (response.difficulty === 'medium') {
+      const diff = 2;
+      if (name === correct) {
+        dispatch(addScore([magic, diff, timer]));
+      }
+    } else {
+      const diff = 1;
+      if (name === correct) {
+        dispatch(addScore([magic, diff, timer]));
+      }
+    }
   };
 
   shuffleArray = (arr) => {
@@ -69,7 +94,8 @@ class Game extends Component {
             {resps.map((resp, idxx) => (
               <button
                 disabled={ timer > maxNumber }
-                onClick={ () => this.setState({ showAnswers: true }) }
+                onClick={ this.handleClick }
+                name={ resp }
                 className={ showAnswers && (correct === resp
                   ? 'correct-answer' : 'wrong-answer') }
                 data-testid={ correct === resp
@@ -88,9 +114,14 @@ class Game extends Component {
 }
 
 Game.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
 
-export default Game;
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
+export default connect(mapStateToProps)(Game);
