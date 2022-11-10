@@ -142,7 +142,9 @@ class Game extends Component {
               data-testid="btn-next"
             >
               Next
-            </button>)}
+
+            </button>
+          )}
         </div>
       );
     }
