@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-
+import '../styles/Login.css';
 import requestUserToken from '../helpers/api';
 import { savePlayerInfo } from '../Redux/actions';
+import triviaLogo from '../styles/images/logotrivia.png';
+import iconeTrybe from '../styles/images/iconetrybe.png';
 
 class Login extends React.Component {
   state = {
@@ -32,37 +34,46 @@ class Login extends React.Component {
   render() {
     const { name, email } = this.state;
     return (
-      <div>
-        <input
-          name="name"
-          value={ name }
-          data-testid="input-player-name"
-          type="text"
-          onChange={ this.handleState }
-        />
-        <input
-          name="email"
-          value={ email }
-          data-testid="input-gravatar-email"
-          type="text"
-          onChange={ this.handleState }
-        />
-        <button
-          disabled={ !name || !email }
-          type="button"
-          data-testid="btn-play"
-          onClick={ this.handleClick }
-        >
-          Play
-        </button>
+      <div className="divLoginPage">
 
-        <button
-          type="button"
-          data-testid="btn-settings"
-          onClick={ this.handleConfig }
-        >
-          Configs
-        </button>
+        <img alt="logoTrivia" src={ triviaLogo } />
+        <div className="loginDiv">
+
+          <input
+            name="email"
+            placeholder="Qual é o seu e-mail do gravatar?"
+            value={ email }
+            data-testid="input-gravatar-email"
+            type="text"
+            onChange={ this.handleState }
+          />
+          <input
+            name="name"
+            placeholder="Qual é o seu nome?"
+            value={ name }
+            data-testid="input-player-name"
+            type="text"
+            onChange={ this.handleState }
+          />
+
+          <button
+            disabled={ !name || !email }
+            type="button"
+            data-testid="btn-play"
+            onClick={ this.handleClick }
+          >
+            Play
+          </button>
+
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.handleConfig }
+          >
+            Configs
+          </button>
+        </div>
+        <img alt="logoTrivia" src={ iconeTrybe } />
       </div>
     );
   }

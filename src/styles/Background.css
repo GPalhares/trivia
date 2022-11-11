@@ -1,0 +1,17 @@
+/* stylelint-disable */
+body {
+    z-index: 0;
+    background-image: url("images/background.png");
+    background-size: cover;
+    /* mix-blend-mode: multiply; */
+    /* filter: blur(4px); */
+
+}
+
+main {
+    align-content: center;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+}
