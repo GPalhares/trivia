@@ -7,6 +7,17 @@ const initialState = {
 
 const token = (state = initialState, action) => {
   switch (action.type) {
+  case 'addPlayerRanking':
+    return {
+      ...state,
+      ranking: [
+        {
+          name: action.playerData.name,
+          score: action.playerData.score,
+          picture: action.playerData.picture,
+        },
+      ],
+    };
   default:
     return state;
   }
