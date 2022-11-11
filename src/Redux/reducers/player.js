@@ -18,9 +18,11 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       score: state.score
-      + (action.scoreInfo[2] + (action.scoreInfo[0] * action.scoreInfo[1])),
+      + action.scoreInfo[0] + (action.scoreInfo[2] * action.scoreInfo[1]),
       assertions: state.assertions + 1,
     };
+  case 'zerarScore':
+    return { ...state, score: 0 };
   default:
     return state;
   }

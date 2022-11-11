@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App.css';
 import Header from '../Components/Header';
-import { addScore } from '../Redux/actions';
+import { addScore, zerarScore } from '../Redux/actions';
 
 class Game extends Component {
   state = {
@@ -21,7 +21,6 @@ class Game extends Component {
     const data = await fetch(`https://opentdb.com/api.php?amount=5&token=${localToken}`)
       .then((resp) => resp.json());
     const { history } = this.props;
-    console.log(data.results);
     if (data.results.length <= 0) {
       localStorage.clear();
       history.push('/');
@@ -41,6 +40,12 @@ class Game extends Component {
 
     const oneSecond = 1000;
     setInterval(() => this.timer(), oneSecond);
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(zerarScore());
+    return true;
   }
 
   timer = () => {

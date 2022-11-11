@@ -23,4 +23,13 @@ const fetchTokenImage = (hash) => async (dispatch) => {
   }
 };
 
-export { fetchTokenImage, savePlayerInfo, addScore };
+const addPlayerRanking = (playerData) => ({
+  type: 'addPlayerRanking',
+  playerData,
+});
+
+const zerarScore = () => ({
+  type: 'zerarScore',
+});
+
+export { fetchTokenImage, savePlayerInfo, addScore, addPlayerRanking, zerarScore };
