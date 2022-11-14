@@ -1,17 +1,13 @@
-/* stylelint-disable */
 body {
-    z-index: 0;
-    background-image: url("images/background.png");
-    background-size: cover;
-    /* mix-blend-mode: multiply; */
-    /* filter: blur(4px); */
-
+  background-image: url('images/background.png');
+  background-size: cover;
+  z-index: 0;
 }
 
 main {
-    align-content: center;
-    display: flex;
-    align-items: center;
-
-    justify-content: center;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }

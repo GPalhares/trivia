@@ -15,13 +15,21 @@ class Header extends React.Component {
     const { name, score, profilePicture } = this.props;
     return (
       <header>
-        <img
-          src={ profilePicture || 'https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc' }
-          alt="gravatar"
-          data-testid="header-profile-picture"
-        />
-        <h1 data-testid="header-player-name">{name}</h1>
-        <h1 data-testid="header-score">{score}</h1>
+        <i />
+        <i />
+        <section>
+          <img
+            src={ profilePicture || 'https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc' }
+            alt="gravatar"
+            data-testid="header-profile-picture"
+          />
+          <h1 data-testid="header-player-name">{name}</h1>
+        </section>
+        <section>
+          <p>⭐️</p>
+          <h1 className="h1__pontos">{'Pontos: '}</h1>
+          <h1 data-testid="header-score">{score}</h1>
+        </section>
       </header>
     );
   }

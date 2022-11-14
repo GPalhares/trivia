@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Components/Header';
-import { addPlayerRanking } from '../Redux/actions';
+import { addPlayerRanking, zerarScore } from '../Redux/actions';
+import { ReactComponent as LogoTrivia } from './svg/LogoTrivia.svg';
 
 class Feedback extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class Feedback extends Component {
   }
 
   componentWillUnmount() {
-    const { ranking } = this.props;
+    const { ranking, dispatch } = this.props;
     let local = JSON.parse(localStorage.getItem('ranking'));
     // console.log(ranking);
     if (local) {
@@ -20,6 +21,7 @@ class Feedback extends Component {
     } else {
       localStorage.setItem('ranking', JSON.stringify(ranking));
     }
+    dispatch(zerarScore());
     return true;
   }
 
@@ -34,35 +36,57 @@ class Feedback extends Component {
   };
 
   render() {
-    const { assertions, score } = this.props;
+    const { assertions, score, picture } = this.props;
     const mediaDeAcertos = 3;
+    const testAcertos = assertions < mediaDeAcertos;
     return (
-      <div>
+      <>
         <Header />
-        <p data-testid="feedback-text">
-          {assertions < mediaDeAcertos ? 'Could be better...' : 'Well Done!'}
-        </p>
-        <p>Seu Score: </p>
-        <p data-testid="feedback-total-score">{score}</p>
-        <p>Seus Acertos: </p>
-        <p data-testid="feedback-total-question">{assertions}</p>
-        <button
-          data-testid="btn-play-again"
-          onClick={ this.playAgain }
-          type="button"
-        >
-          Play Again
-
-        </button>
-        <button
-          onClick={ this.goToRanking }
-          type="button"
-          data-testid="btn-ranking"
-        >
-          Ranking
-
-        </button>
-      </div>
+        <div className="feedback">
+          <LogoTrivia />
+          <div className="div__feedback">
+            <img
+              src={ picture }
+              alt="user_picture"
+              style={ testAcertos
+                ? { border: '4px solid #ea5d5d', filter: 'drop-shadow(0 0 9px #ea5d5d)' }
+                : { border: '4px solid green', filter: 'drop-shadow(0 0 9px green)' } }
+            />
+            <h1
+              data-testid="feedback-text"
+              style={ testAcertos ? { color: '#ea5d5d' } : { color: 'green' } }
+            >
+              {testAcertos ? 'Could be better...' : 'Well Done!'}
+            </h1>
+            <div>
+              <p>{'Um total de '}</p>
+              <p data-testid="feedback-total-score">{score}</p>
+              <p>{`${score === 1 ? 'ponto' : 'pontos'}.`}</p>
+            </div>
+            <div>
+              <p>{'Você acertou '}</p>
+              <p data-testid="feedback-total-question">{assertions}</p>
+              <p>{`${assertions === 1 ? 'questão' : 'questões'}!`}</p>
+            </div>
+            <section>
+              <button
+                data-testid="btn-play-again"
+                onClick={ this.playAgain }
+                type="button"
+              >
+                Play Again
+              </button>
+              <button
+                onClick={ this.goToRanking }
+                type="button"
+                data-testid="btn-ranking"
+              >
+                Ranking
+              </button>
+            </section>
+          </div>
+        </div>
+      </>
     );
   }
 }

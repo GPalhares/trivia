@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App.css';
 import Header from '../Components/Header';
-import { addScore, zerarScore } from '../Redux/actions';
+import { addScore } from '../Redux/actions';
+import { ReactComponent as LogoTrivia } from './svg/LogoTrivia.svg';
+import { ReactComponent as Timer } from './svg/Timer.svg';
 
 class Game extends Component {
   state = {
@@ -42,9 +44,14 @@ class Game extends Component {
     setInterval(() => this.timer(), oneSecond);
   }
 
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch(zerarScore());
+  shouldComponentUpdate() {
+    const { showAnswers, timer } = this.state;
+    const magic = 30;
+    if (timer >= magic && !showAnswers) {
+      this.setState({
+        showAnswers: true,
+      });
+    }
     return true;
   }
 
@@ -117,40 +124,47 @@ class Game extends Component {
     const maxNumber = 30;
     if (response.length > 0) {
       return (
-        <div>
+        <>
           <Header />
-          <p>{timer}</p>
-          <h2 data-testid="question-category">{response[idx].category}</h2>
-          <p data-testid="question-text">{response[idx].question}</p>
-          <div data-testid="answer-options">
-            {resps.map((resp, idxx) => (
-              <button
-                disabled={ timer > maxNumber }
-                onClick={ this.handleClick }
-                name={ resp }
-                className={ showAnswers && (correct === resp
-                  ? 'correct-answer' : 'wrong-answer') }
-                data-testid={ correct === resp
-                  ? 'correct-answer' : `wrong-answer-${idxx}` }
-                type="button"
-                key={ idxx }
-              >
-                {resp}
-              </button>
-            ))}
+          <div className="div__game">
+            <section className="section__question">
+              <LogoTrivia />
+              <h2 data-testid="question-category">{response[idx].category}</h2>
+              <p data-testid="question-text">{response[idx].question}</p>
+              <section>
+                <Timer />
+                <p>{`Tempo: ${timer}s`}</p>
+              </section>
+            </section>
+            <div className="div__answer" data-testid="answer-options">
+              {resps.map((resp, idxx) => (
+                <button
+                  disabled={ (timer > maxNumber) || showAnswers }
+                  onClick={ this.handleClick }
+                  name={ resp }
+                  className={ ((timer > maxNumber) || showAnswers) && (correct === resp
+                    ? 'correct-answer' : 'wrong-answer') }
+                  data-testid={ correct === resp
+                    ? 'correct-answer' : `wrong-answer-${idxx}` }
+                  type="button"
+                  key={ idxx }
+                >
+                  {resp}
+                </button>
+              ))}
+              {(showNext || timer > maxNumber) && (
+                <button
+                  onClick={ this.handleNext }
+                  type="button"
+                  data-testid="btn-next"
+                  className="button__next"
+                >
+                  Next
+                </button>
+              )}
+            </div>
           </div>
-          {(showNext || timer > maxNumber)
-          && (
-            <button
-              onClick={ this.handleNext }
-              type="button"
-              data-testid="btn-next"
-            >
-              Next
-
-            </button>
-          )}
-        </div>
+        </>
       );
     }
   }

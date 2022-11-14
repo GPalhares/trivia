@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue&display=swap') ;
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -62,12 +64,328 @@ body {
   }
 }
 
-.correct-answer {
-  background-color: rgb(6, 240, 15);
+.correct-answer:disabled {
+  background-color: rgb(200, 255, 202);
   border: 3px solid rgb(6, 240, 15);
+  border-radius: 100px;
+  box-shadow: 0 0 0.6rem rgb(6, 240, 15);
+  box-sizing: border-box;
+  color: black;
+  height: 64px;
+  margin-top: 20px;
+
+  /* position: absolute; */
+  width: 519px;
 }
 
-.wrong-answer {
-  background-color: red;
+.wrong-answer:disabled {
+  background-color: rgb(255, 211, 211);
   border: 3px solid red;
+  border-radius: 100px;
+  box-shadow: 0 0 0.6rem red;
+  box-sizing: border-box;
+  color: black;
+  height: 64px;
+  margin-top: 20px;
+
+  /* position: absolute; */
+  width: 519px;
+}
+
+header {
+  align-items: center;
+  background: white;
+  border-radius: 10% 10% 0 0;
+  display: flex;
+  height: 113px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+header section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+header section img {
+  border-radius: 18.137px;
+  height: 37px;
+  margin: 9px;
+  width: 37px;
+}
+
+header p {
+  font-size: 30px;
+  margin: 0 9px 0 0;
+}
+
+header h1 {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 24px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  width: 144px;
+}
+
+.h1__pontos {
+  margin-right: 3px;
+  width: auto;
+}
+
+.div__game {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 777px;
+  justify-content: space-around;
+
+  /* padding: 186px; */
+  padding-top: 0;
+}
+
+.section__question {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 286px;
+  justify-content: space-between;
+  left: 101px;
+  top: 300px;
+  width: 439px;
+}
+
+.section__question section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 9px 9px;
+}
+
+.section__question :first-child {
+  margin-top: -300px;
+}
+
+.section__question section :first-child {
+  margin-right: 9px;
+  margin-top: 0;
+}
+
+.section__question section :last-child {
+  color: #ea5d5d;
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin: 0;
+  text-align: center;
+}
+
+.section__question p {
+  color: black;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin: 0 9px 9px;
+  text-align: center;
+}
+
+.section__question h2 {
+  align-items: center;
+  background: #f9ba18;
+  border-radius: 100px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+
+  /* identical to box height, or 24px */
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  height: 45px;
+  justify-content: center;
+  left: 114px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin: -50px 9px 0;
+
+  /* position: absolute; */
+  text-align: center;
+  top: 275px;
+  width: 413px;
+}
+
+.div__answer {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 100px;
+}
+
+.div__answer button {
+  background: white;
+  border: 1px solid white;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: black;
+  height: 64px;
+  left: 661px;
+  margin-top: 20px;
+  top: 361px;
+
+  /* position: absolute; */
+  width: 519px;
+
+}
+
+.div__feedback button {
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+
+  /* identical to box height, or 24px */
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin: 30px 3.5px -60px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 212.5px;
+}
+
+.div__feedback button::placeholder {
+  text-transform: capitalize;
+}
+
+.div__feedback button:first-of-type {
+  background: #00d5e2;
+}
+
+.div__feedback button:last-of-type {
+  background: #2fc18c;
+}
+
+.div__answer button:disabled {
+  color: gray;
+}
+
+.button__next:last-child {
+  align-items: center;
+  background: #2fc18c;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+
+  /* identical to box height, or 24px */
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  line-height: 150%;
+  margin-top: 93px;
+  text-align: center;
+  width: 519px;
+}
+
+.feedback {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.feedback svg {
+  height: 130px;
+  margin-top: -60px;
+  width: 130px;
+}
+
+.div__feedback {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-flow: column nowrap;
+  height: 278px;
+  justify-content: flex-start;
+  margin-top: 100px;
+  width: 439px;
+}
+
+.div__feedback img {
+  border: 4px solid;
+  border-radius: 104.412px;
+  height: 160px;
+  left: 534px;
+  margin-top: -60px;
+  top: 200px;
+  width: 160px;
+}
+
+.div__feedback h1 {
+  align-items: center;
+
+  /* or 45px */
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  height: 71px;
+  justify-content: center;
+  left: 421px;
+  line-height: 150%;
+  text-align: center;
+  text-transform: uppercase;
+  top: 442px;
+  width: 439px;
+}
+
+header h1:last-of-type {
+  font-weight: 900;
+}
+
+.div__feedback p {
+  align-items: center;
+  color: #b5b5b5;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 150%;
+  margin: 5px 3px;
+  text-align: center;
+}
+
+.div__feedback div {
+  align-items: baseline;
+  display: flex;
+  justify-content: baseline;
+}
+
+.div__feedback p:last-of-type {
+  margin-bottom: 10px;
 }
