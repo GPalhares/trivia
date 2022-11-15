@@ -22,7 +22,12 @@ const player = (state = initialState, action) => {
       assertions: state.assertions + 1,
     };
   case 'zerarScore':
-    return { ...state, score: 0 };
+    return { ...state,
+      name: '',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: '',
+      profilePicture: undefined };
   default:
     return state;
   }
