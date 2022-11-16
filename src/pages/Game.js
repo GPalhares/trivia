@@ -23,6 +23,7 @@ class Game extends Component {
     const data = await fetch(`https://opentdb.com/api.php?amount=5&token=${localToken}`)
       .then((resp) => resp.json());
     const { history } = this.props;
+    console.log(data);
     if (data.results.length <= 0) {
       localStorage.clear();
       history.push('/');
@@ -87,12 +88,12 @@ class Game extends Component {
 
   handleNext = () => {
     this.setState((prev) => ({ handleClick: prev.handleClick + 1 }));
-    const { handleClick, showAnswers } = this.state;
+    const { handleClick } = this.state;
     const { history } = this.props;
     const mgc = 4;
     if (handleClick >= mgc) {
       history.push('/feedback');
-    } else if (showAnswers) {
+    } else {
       this.setState((prev) => ({
         showAnswers: false,
         showNext: false,
@@ -129,7 +130,12 @@ class Game extends Component {
           <div className="div__game">
             <section className="section__question">
               <LogoTrivia />
-              <h2 data-testid="question-category">{response[idx].category}</h2>
+              <h2
+                className={ response[idx].difficulty }
+                data-testid="question-category"
+              >
+                {response[idx].category}
+              </h2>
               <p data-testid="question-text">{response[idx].question}</p>
               <section>
                 <Timer />

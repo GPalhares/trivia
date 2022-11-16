@@ -28,7 +28,7 @@ class Header extends React.Component {
         <section>
           <p>⭐️</p>
           <h1 className="h1__pontos">{'Pontos: '}</h1>
-          <h1 data-testid="header-score">{score}</h1>
+          <h1 className="ponto" data-testid="header-score">{score}</h1>
         </section>
       </header>
     );

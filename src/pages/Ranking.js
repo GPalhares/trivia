@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { ReactComponent as LogoTrivia } from './svg/LogoTrivia.svg';
+import { ReactComponent as StarVector } from './svg/StarVector.svg';
 
 class Ranking extends Component {
   state = {
@@ -22,13 +24,18 @@ class Ranking extends Component {
   render() {
     const { rank } = this.state;
     return (
-      <div>
-        <h1 data-testid="ranking-title">Tela de Ranking</h1>
+      <div className="div__ranking">
+        <LogoTrivia />
+        <h1 data-testid="ranking-title">RANKING</h1>
         {rank.length > 0 && rank.map((player, idx) => (
           <section key={ idx }>
-            <p data-testid={ `player-name-${idx}` }>{player.name}</p>
-            <p data-testid={ `player-score-${idx}` }>{player.score}</p>
             <img src={ player.picture } alt={ idx } />
+            <p className="p__name" data-testid={ `player-name-${idx}` }>{player.name}</p>
+            <div>
+              <StarVector />
+              <p data-testid={ `player-score-${idx}` }>{player.score}</p>
+              <p>pontos</p>
+            </div>
           </section>
         ))}
         <button
