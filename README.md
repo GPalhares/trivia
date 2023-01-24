@@ -1,8 +1,9 @@
 ## O Trivia é um aplicativo de perguntas e respostas com perguntas de diversas dificuldades e temas, onde o usuario vai acumulando pontos para se classificar no ranking local.
 
 <br>
-
-## Link para ver aplicação https://www.linkedin.com/feed/update/urn:li:activity:6999054666751762432/
+ Teste o app!
+<br>
+https://dev-palhares-trivia.netlify.app/
 
 <br>
 
