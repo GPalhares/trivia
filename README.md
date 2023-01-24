@@ -1,13 +1,31 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+## O Trivia é um aplicativo de perguntas e respostas com perguntas de diversas dificuldades e temas, onde o usuario vai acumulando pontos para se classificar no ranking local.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+<br>
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Link para ver aplicação https://www.linkedin.com/feed/update/urn:li:activity:6999054666751762432/
+
+<br>
+
+## Desenvolvedores
+- [Gabriel Palhares](https://github.com/GPalhares)
+- [Victor Santos](https://github.com/vicsantus)
+- [Saulo Maciel](https://github.com/saulomaciel)
+- Yago Carvalho
+- [Robson Aires](https://github.com/Robson-Aires)
+ 
+ <br>
+ 
+## Tecnologias
+
+- Nesse projeto realizamos o front-end da aplicação seguindo um Figma!
+- React
+- Redux
+- React Router
+- RTL para testes
+- Thunk como middleware
+<br>
+
+## Testes
+
+ - Coberturas de testes de 95% da aplicação usando RTL.
+ 
